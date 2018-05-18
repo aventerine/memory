@@ -1,14 +1,14 @@
 // variables
 const img = ['fa-anchor',
-               'fa-bicycle',
-               'fa-diamond',
-               'fa-leaf',
-               'fa-bomb',
-               'fa-bolt',
-               'fa-paper-plane-o',
-               'fa-cube'];
+             'fa-bicycle',
+             'fa-diamond',
+             'fa-leaf',
+             'fa-bomb',
+             'fa-bolt',
+             'fa-paper-plane-o',
+             'fa-cube'];
 let cards = [];
-let globalTimer = null;
+let timer = null;
 const timerDiv = document.querySelector('.timer');
 const playAgainButton = document.querySelector('.play-again');
 const starsDiv = document.querySelector('.score-panel .stars');
@@ -21,7 +21,7 @@ const fragment = document.createDocumentFragment();
 let state = {};
 
 const startTimer = () => {
-  globalTimer = setInterval(function () {
+  timer = setInterval(function () {
     state.time = state.time + 1;
     state.time === 3600 ? state = {...state, time: 0, hours: state.hours + 1} : null
     let hours = state.hours < 10 ? `0${state.hours}`: hours;
@@ -194,7 +194,7 @@ const handleMatch = (e,i,match) => {
     state.moves === 21 ? updateStars(1) : state.moves === 11 ? updateStars(2) : null;
     //checks if we have matched 8 cards in a game
     if (state.solutions === 8) {
-      window.clearInterval(globalTimer);
+      window.clearInterval(timer);
       handleWinner(timerDiv.textContent);
     }
     // let the user click on cards again
@@ -230,7 +230,7 @@ const startGame = () => {
   }
   // update DOM
   movesDiv.textContent = state.moves;
-  updateStars(3);
+  updateStars(5);
     closeErrors();
 
   shuffle(cards);
@@ -254,7 +254,7 @@ const startGame = () => {
       deckList[0].childNodes[i].className = 'card close';
       deckList[0].childNodes[i].firstChild.classList.toggle('hidden');
     }
-    window.clearInterval(globalTimer);
+    window.clearInterval(timer);
     startTimer();
   }, 1500)
 
@@ -266,7 +266,7 @@ document.addEventListener("DOMContentLoaded", function(event) {
   // setup event listener for reset game button
   resetButton.addEventListener('click', () => {
     timerDiv.textContent = '00:00';
-    window.clearInterval(globalTimer);
+    window.clearInterval(timer);
     deck.innerHTML = '';
     closeErrors();
     startGame();

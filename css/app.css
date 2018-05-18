@@ -18,7 +18,7 @@ body {
 
 body {
     background: #433e3f;
-    font-family: 'Coda', cursive;
+    font-family: 'Lobster', cursive;
 }
 
 .container {
@@ -29,7 +29,8 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Lobster', sans-serif;
+    font-size: 40px;
     font-weight: 300;
     color: #c69c72;
 }
@@ -110,6 +111,7 @@ section.game-panel {
     justify-content: space-between;
     align-items: center;
     margin: 0 0 3em;
+    border: 3px solid #c69c72;
 }
 
 .deck .card {
@@ -127,6 +129,7 @@ section.game-panel {
         transform-style: preserve-3d;
     transition: all .5s ease;
         font-size: 33px;
+    border: 3px solid #c69c72;
 }
 
 .deck .card.open {
